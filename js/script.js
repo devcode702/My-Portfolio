@@ -112,5 +112,3 @@ window.addEventListener('scroll', () => {
         link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
     });
 });
-
-
