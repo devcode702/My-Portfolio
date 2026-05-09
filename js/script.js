@@ -27,6 +27,31 @@ function type() {
 }
 setTimeout(type, 1200);
 
+// ── Hero Particles ──
+(function spawnParticles() {
+    const container = document.getElementById('heroParticles');
+    if (!container) return;
+    const colors = ['#00d4ff', '#7b2ff7', '#34d399', '#a78bfa'];
+    for (let i = 0; i < 22; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 4 + 2;
+        const left = Math.random() * 100;
+        const delay = Math.random() * 12;
+        const duration = Math.random() * 10 + 8;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        p.style.cssText = `
+            width:${size}px; height:${size}px;
+            left:${left}%; bottom:${Math.random() * 30}%;
+            background:${color};
+            box-shadow: 0 0 ${size * 3}px ${color};
+            animation-duration:${duration}s;
+            animation-delay:${delay}s;
+        `;
+        container.appendChild(p);
+    }
+})();
+
 // ── Navbar scroll effect ──
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {

@@ -29,16 +29,18 @@
     <!-- Hero -->
     <section class="hero">
         <div class="hero-bg-grid"></div>
+        <div class="hero-particles" id="heroParticles"></div>
         <div class="hero-orb hero-orb-1"></div>
         <div class="hero-orb hero-orb-2"></div>
         <div class="hero-orb hero-orb-3"></div>
         <div class="hero-content">
+            <div class="hero-status"><span class="status-dot"></span> Open to opportunities</div>
             <p class="hero-greeting">👋 Hello, World! I'm</p>
             <h1>Nisha Kumari</h1>
             <p class="subtitle">Data Analyst · Python Developer · Backend Development</p>
             <p class="hero-tagline">"Focused on solving real-world problems using data and Python"</p>
             <div class="typing-wrapper">
-                <span id="typingText"></span><span class="cursor">|</span>
+                <span class="typing-prefix">$ </span><span id="typingText"></span><span class="cursor">|</span>
             </div>
             <div class="hero-links">
                 <a href="https://github.com/devcode702" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
@@ -47,11 +49,10 @@
                 <a href="https://linkedin.com/in/nisha-kumari1105" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
                     <i class="fab fa-linkedin"></i> LinkedIn
                 </a>
+                <a href="#projects" class="btn btn-ghost">
+                    <i class="fas fa-folder-open"></i> View Work
+                </a>
             </div>
-        </div>
-        <div class="hero-scroll">
-            <span>scroll</span>
-            <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
@@ -80,7 +81,7 @@
                             <div class="label">CGPA</div>
                         </div>
                         <div class="stat-box">
-                            <div class="num">3+</div>
+                            <div class="num">4+</div>
                             <div class="label">Data Projects</div>
                         </div>
                         <div class="stat-box">
@@ -144,10 +145,68 @@
             <span class="section-tag">// my work</span>
             <h2>Projects</h2>
             <p class="section-subtitle">Data-driven work that solves real problems</p>
+
+            <!-- Featured Project -->
+            <div class="featured-project reveal">
+                <div class="featured-badge"><i class="fas fa-star"></i> Featured Project</div>
+                <div class="featured-inner">
+                    <div class="featured-left">
+                        <div class="project-number featured-num">01</div>
+                        <h3>Customer Churn Analysis</h3>
+                        <p class="featured-tagline">End-to-end churn analysis on a 50,000-user music streaming dataset</p>
+                        <div class="project-tech">
+                            <span class="tech-tool">Excel</span>
+                            <span class="tech-lang">SQL</span>
+                            <span class="tech-tool">Power BI</span>
+                        </div>
+                        <div class="featured-insight-row">
+                            <div class="insight-chip"><i class="fas fa-bolt"></i> Inactivity = #1 churn signal</div>
+                            <div class="insight-chip"><i class="fas fa-users"></i> 50,000 users analyzed</div>
+                            <div class="insight-chip"><i class="fas fa-chart-pie"></i> Interactive Power BI dashboard</div>
+                        </div>
+                        <div class="project-links" style="margin-top:1.5rem;">
+                            <a href="https://github.com/devcode702/customer-churn-analysis" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="featured-right">
+                        <div class="project-detail">
+                            <p class="detail-label problem"><i class="fas fa-exclamation-circle"></i> Problem</p>
+                            <p>Music streaming platforms struggle to identify which users are about to leave — and why — before it's too late.</p>
+                        </div>
+                        <div class="project-detail">
+                            <p class="detail-label data"><i class="fas fa-database"></i> Data Work</p>
+                            <ul>
+                                <li>Cleaned & preprocessed 50,000-user dataset in Excel</li>
+                                <li>Validated and queried data patterns using SQL</li>
+                                <li>Segmented users by activity, engagement & skip behavior</li>
+                            </ul>
+                        </div>
+                        <div class="project-detail">
+                            <p class="detail-label analysis"><i class="fas fa-chart-bar"></i> Key Insights</p>
+                            <ul>
+                                <li><span class="highlight-num">Inactivity</span> is the strongest & earliest predictor of churn</li>
+                                <li>Engagement metrics had minimal impact on churn rate</li>
+                                <li>Skip behavior & listening time nearly identical across users</li>
+                            </ul>
+                        </div>
+                        <div class="project-detail">
+                            <p class="detail-label outcome"><i class="fas fa-rocket"></i> Outcome</p>
+                            <ul>
+                                <li>Built an interactive Power BI dashboard for churn monitoring</li>
+                                <li>Churn is not sudden — it builds over time through inactivity</li>
+                                <li>Delivered actionable retention strategy recommendations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="projects-grid">
 
                 <div class="project-card reveal">
-                    <div class="project-number">01</div>
+                    <div class="project-number">02</div>
                     <h3>API Performance Monitoring Dashboard</h3>
                     <div class="project-tech">
                         <span class="tech-lang">Python</span><span class="tech-lib">Pandas</span><span class="tech-tool">Streamlit</span><span class="tech-tool">SQLite</span>
@@ -188,7 +247,7 @@
                 </div>
 
                 <div class="project-card reveal">
-                    <div class="project-number">02</div>
+                    <div class="project-number">03</div>
                     <h3>AgriSense — Smart Agriculture Advisory System</h3>
                     <div class="project-tech">
                         <span class="tech-lang">Python</span><span class="tech-lib">Pandas</span><span class="tech-lib">Matplotlib</span><span class="tech-tool">Streamlit</span><span class="tech-tool">API</span>
@@ -229,7 +288,7 @@
                 </div>
 
                 <div class="project-card reveal">
-                    <div class="project-number">03</div>
+                    <div class="project-number">04</div>
                     <h3>Global CO₂ Emissions Analysis</h3>
                     <div class="project-tech">
                         <span class="tech-lang">Python</span><span class="tech-lib">Pandas</span><span class="tech-lib">Seaborn</span><span class="tech-tool">Power BI</span>
@@ -340,8 +399,9 @@
             <span class="section-tag">// get in touch</span>
             <h2>Contact Me</h2>
             <p class="section-subtitle">Open to opportunities — let's connect!</p>
-            <div class="contact-content contact-content--centered">
-                <div class="contact-info reveal">
+            <div class="contact-grid">
+                <div class="contact-card reveal">
+                    <div class="contact-card-glow"></div>
                     <div class="info-item">
                         <div class="info-icon"><i class="fas fa-envelope"></i></div>
                         <div>
@@ -363,19 +423,36 @@
                             <p>Samastipur, Bihar, India</p>
                         </div>
                     </div>
+                    <div class="contact-divider"></div>
+                    <div class="social-links-inline">
+                        <a href="https://github.com/devcode702" target="_blank" rel="noopener noreferrer" title="GitHub">
+                            <i class="fab fa-github"></i><span>GitHub</span>
+                        </a>
+                        <a href="https://linkedin.com/in/nisha-kumari1105" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                            <i class="fab fa-linkedin"></i><span>LinkedIn</span>
+                        </a>
+                    </div>
                 </div>
-            </div>
+                <div class="contact-cta reveal">
+                    <div class="cta-icon"><i class="fas fa-paper-plane"></i></div>
+                    <h3>Let's Build Something Together</h3>
+                    <p>I'm actively looking for roles in <span>Data Analytics</span> and <span>Python Development</span>. Whether it's a full-time role, internship, or a cool project — I'd love to hear from you.</p>
 
-            <div class="social-links">
-                <a href="https://github.com/devcode702" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/nisha-kumari1105" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <p>Designed & Built by <span>Nisha Kumari</span> &copy; 2025</p>
+        <div class="footer-inner">
+            <div class="footer-logo">NK.</div>
+            <p>Designed & Built by <span>Nisha Kumari</span> &copy; 2025</p>
+            <div class="footer-links">
+                <a href="https://github.com/devcode702" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/nisha-kumari1105" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
     </footer>
 
     <script src="js/script.js"></script>
