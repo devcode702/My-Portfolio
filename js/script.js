@@ -137,3 +137,120 @@ window.addEventListener('scroll', () => {
         link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
     });
 });
+
+// ── Network Node Background Animation ──
+(function initNetwork() {
+    const canvas = document.getElementById('networkCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    const COLORS = ['#00d4ff', '#7b2ff7', '#34d399', '#a78bfa'];
+    const NODE_COUNT = 70;
+    const MAX_DIST = 160;
+    const NODE_SPEED = 0.4;
+
+    let W, H, nodes = [];
+
+    function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+    }
+
+    function randomColor() {
+        return COLORS[Math.floor(Math.random() * COLORS.length)];
+    }
+
+    function createNode() {
+        return {
+            x: Math.random() * W,
+            y: Math.random() * H,
+            vx: (Math.random() - 0.5) * NODE_SPEED,
+            vy: (Math.random() - 0.5) * NODE_SPEED,
+            r: Math.random() * 2 + 1.5,
+            color: randomColor(),
+            pulse: Math.random() * Math.PI * 2   // phase offset for pulsing
+        };
+    }
+
+    function init() {
+        resize();
+        nodes = Array.from({ length: NODE_COUNT }, createNode);
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, W, H);
+        const t = performance.now() * 0.001;
+
+        // Draw connections
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                const a = nodes[i], b = nodes[j];
+                const dx = a.x - b.x, dy = a.y - b.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < MAX_DIST) {
+                    const alpha = (1 - dist / MAX_DIST) * 0.35;
+                    // Gradient line between two node colors
+                    const grad = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
+                    grad.addColorStop(0, hexToRgba(a.color, alpha));
+                    grad.addColorStop(1, hexToRgba(b.color, alpha));
+                    ctx.beginPath();
+                    ctx.moveTo(a.x, a.y);
+                    ctx.lineTo(b.x, b.y);
+                    ctx.strokeStyle = grad;
+                    ctx.lineWidth = 0.8;
+                    ctx.stroke();
+                }
+            }
+        }
+
+        // Draw nodes
+        nodes.forEach(n => {
+            const pulse = n.r + Math.sin(t * 1.5 + n.pulse) * 0.6;
+
+            // Outer glow ring
+            const glow = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, pulse * 5);
+            glow.addColorStop(0, hexToRgba(n.color, 0.25));
+            glow.addColorStop(1, hexToRgba(n.color, 0));
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, pulse * 5, 0, Math.PI * 2);
+            ctx.fillStyle = glow;
+            ctx.fill();
+
+            // Core dot
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, pulse, 0, Math.PI * 2);
+            ctx.fillStyle = hexToRgba(n.color, 0.9);
+            ctx.fill();
+        });
+
+        // Move nodes
+        nodes.forEach(n => {
+            n.x += n.vx;
+            n.y += n.vy;
+            // Bounce off edges
+            if (n.x < 0 || n.x > W) n.vx *= -1;
+            if (n.y < 0 || n.y > H) n.vy *= -1;
+        });
+
+        requestAnimationFrame(draw);
+    }
+
+    function hexToRgba(hex, alpha) {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return `rgba(${r},${g},${b},${alpha})`;
+    }
+
+    window.addEventListener('resize', () => {
+        resize();
+        // Reposition nodes within new bounds
+        nodes.forEach(n => {
+            n.x = Math.min(n.x, W);
+            n.y = Math.min(n.y, H);
+        });
+    });
+
+    init();
+    draw();
+})();
