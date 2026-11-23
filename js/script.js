@@ -1,10 +1,11 @@
 // ── Typing Effect ──
 const phrases = [
+    'MIS Analyst',
     'Python Developer',
     'Data Analyst',
-    'Streamlit Builder',
-    'Problem Solver',
-    'Backend Developer'
+    'Report Automation Expert',
+    'Power BI Developer',
+    'SQL Server Expert'
 ];
 let phraseIndex = 0, charIndex = 0, isDeleting = false;
 const typingEl = document.getElementById('typingText');
